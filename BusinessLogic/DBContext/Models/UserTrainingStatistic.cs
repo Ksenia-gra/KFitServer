@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KFitServer.DBContext.Models;
+namespace KFitServer.BusinessLogic.DBContext.Models;
 
 public partial class UserTrainingStatistic
 {
@@ -11,9 +11,7 @@ public partial class UserTrainingStatistic
 
     public DateOnly? TrainingDate { get; set; }
 
-    public string? TrainingId { get; set; }
+    public string TrainingId { get; set; }
 
-    public virtual TrainingMetadatum? Training { get; set; }
-
-    public virtual UsersPersonalParameter? User { get; set; }
+    public virtual YoutubeVideo Training { get; set; }
 }

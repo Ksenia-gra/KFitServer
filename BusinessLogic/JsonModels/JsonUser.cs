@@ -6,17 +6,15 @@ namespace KFitServer.JsonModels
 {
     public class JsonUser
     {
-        [JsonProperty(PropertyName = "gender")]
-        public string? UserGender { get; set; }
+        public string UserGender { get; set; }
 
-        [JsonProperty(PropertyName = "dateOfBirth")]
         public DateOnly? UserDateOfBirth { get; set; }
 
-        [JsonProperty(PropertyName = "height")]
         public decimal? UserHeight { get; set; }
 
-        [JsonProperty(PropertyName = "target")]
-        public string? UserTarget { get; set; }
+        public string UserTarget { get; set; }
+
+        public decimal? UserTargetWeight { get; set; }
 
     }
 }

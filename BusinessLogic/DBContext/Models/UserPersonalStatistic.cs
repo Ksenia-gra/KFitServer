@@ -1,21 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-namespace KFitServer.DBContext.Models;
+namespace KFitServer.BusinessLogic.DBContext.Models;
 
 public partial class UserPersonalStatistic
 {
-    [JsonIgnore]
     public int Id { get; set; }
 
-    [JsonProperty(PropertyName = "statisticDate")]
     public DateOnly? RecordDate { get; set; }
 
-    [JsonIgnore]
     public int? UserId { get; set; }
 
-    [JsonProperty(PropertyName = "userWeight")]
     public decimal? UserWeight { get; set; }
 
     public decimal? UserChestGirth { get; set; }
@@ -24,6 +19,13 @@ public partial class UserPersonalStatistic
 
     public decimal? UserWaistCircumference { get; set; }
 
-    [JsonIgnore]
-    public virtual UsersPersonalParameter? User { get; set; }
+    public int? CaloriesNorm { get; set; }
+
+    public int? Proteins { get; set; }
+
+    public int? Lipids { get; set; }
+
+    public int? Carbohydrates { get; set; }
+
+    public decimal? WaterNorm { get; set; }
 }
