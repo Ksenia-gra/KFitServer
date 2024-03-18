@@ -1,10 +1,6 @@
-﻿using KFitServer.DBContext.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Newtonsoft.Json;
-
-namespace KFitServer.JsonModels
+﻿namespace KFitServer.JsonModels
 {
-    public class JsonUser
+	public class JsonUser
     {
         public string UserGender { get; set; }
 

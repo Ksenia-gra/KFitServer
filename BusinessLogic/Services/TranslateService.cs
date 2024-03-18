@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using KFitServer.Legacy;
+using Newtonsoft.Json;
 using System.Net;
 
 namespace KFitServer

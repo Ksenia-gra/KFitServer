@@ -1,24 +1,13 @@
+using KFitServer.BusinessLogic.DBContext;
 using KFitServer.BusinessLogic.Services;
-using KFitServer.DBContext;
-using KFitServer.DBContext.Models;
-using KFitServer.Helpers;
-using KFitServer.JsonModels;
-using KFitServer.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Specialized;
-using System.Net;
-using System.Net.Http;
 
 namespace KFitServer.Controllers
 {
-    [ApiController]
+	[ApiController]
     [Route("api/[controller]")]
+	[Authorize]
     public class KFitApiNutritionController : ControllerBase
     {
         private Dictionary<string, string> daysDict = new Dictionary<string, string>
@@ -132,7 +121,7 @@ namespace KFitServer.Controllers
             return Ok();
         }
 
-		[HttpPost("AddUserNutritionStatistic")]
+		/*[HttpPost("AddUserNutritionStatistic")]
 		public async Task<IActionResult> AddUserNutritionStatistic([FromHeader] string token, [FromBody] List<UsersNutritionStatistic> nutritionStatistics)
 		{
 			try
@@ -149,7 +138,7 @@ namespace KFitServer.Controllers
 				return BadRequest(ex.Message);
 			}
 			
-		}
+		}*/
 
 		/*        [HttpGet("GetUserTrainingStatistic")]
 				public async Task<IActionResult> GetUserTrainingStatistic([FromHeader] string token)

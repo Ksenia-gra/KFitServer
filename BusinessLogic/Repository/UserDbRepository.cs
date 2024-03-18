@@ -1,6 +1,6 @@
-﻿using KFitServer.BusinessLogic.Helpers;
-using KFitServer.DBContext;
-using KFitServer.DBContext.Models;
+﻿using KFitServer.BusinessLogic.DBContext;
+using KFitServer.BusinessLogic.DBContext.Models;
+using KFitServer.BusinessLogic.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 namespace KFitServer.BusinessLogic.Repository
@@ -10,16 +10,20 @@ namespace KFitServer.BusinessLogic.Repository
 		private readonly ILogger<UserDbRepository> logger;
 		private readonly KfitContext kfitContext;
 		private readonly IHashCreator hashCreator;
-		public UserDbRepository(ILogger<UserDbRepository> logger, KfitContext kfitContext, IHashCreator hashCreator)
+		private readonly IJwtGenerator jwtGenerator;
+
+		public UserDbRepository(ILogger<UserDbRepository> logger, KfitContext kfitContext, IHashCreator hashCreator, IJwtGenerator jwtGenerator)
 		{
 			this.logger = logger;
 			this.kfitContext = kfitContext;
 			this.hashCreator = hashCreator;
+			this.jwtGenerator = jwtGenerator;
 		}
 		public async Task<bool> AddAsync(User item)
 		{
 			try
 			{
+				item.AuthToken = jwtGenerator.CreateToken(item);
 				item.Salt = hashCreator.GenerateSalt();
 				item.PasswordHash = hashCreator.Hash(item.PasswordHash, item.Salt);
 

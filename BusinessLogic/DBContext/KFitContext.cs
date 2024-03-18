@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using KFitServer.BusinessLogic.DBContext.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace KFitServer.BusinessLogic.DBContext.Models;
+namespace KFitServer.BusinessLogic.DBContext;
 
 public partial class KfitContext : DbContext
 {
@@ -13,6 +12,7 @@ public partial class KfitContext : DbContext
     public KfitContext(DbContextOptions<KfitContext> options)
         : base(options)
     {
+        Database.EnsureCreated();
     }
 
     public virtual DbSet<Gender> Genders { get; set; }
@@ -41,7 +41,7 @@ public partial class KfitContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=kfit;Username=postgres;Password=tyuKo467");
+        => optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=kfit;Username=postgres;Password=nb^teg62");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

@@ -5,7 +5,18 @@ namespace KFitServer.BusinessLogic.DBContext.Models;
 
 public partial class User
 {
-    public int Id { get; set; }
+	public User()
+	{
+	}
+
+	public User(string login, string email, string password)
+	{
+		Login = login;
+		Email = email;
+        PasswordHash = password;
+	}
+
+	public int Id { get; set; }
 
     public string Login { get; set; }
 

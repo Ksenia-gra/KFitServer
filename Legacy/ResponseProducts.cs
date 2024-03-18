@@ -1,16 +1,14 @@
-﻿using KFitServer.DBContext.Models;
-
-namespace KFitServer
+﻿namespace KFitServer.Legacy
 {
-    public record class ResponseProducts(List<Hint> Hints);
+	public record class ResponseProducts(List<Hint> Hints);
 
     public record class Hint(Food Food);
 
-    public record class Food(string FoodId,string Label,Nutrients Nutrients);
+    public record class Food(string FoodId, string Label, Nutrients Nutrients);
 
-    public record class Nutrients(double ENERC_KCAL,double PROCNT,double FAT, double CHOCDF);
+    public record class Nutrients(double ENERC_KCAL, double PROCNT, double FAT, double CHOCDF);
 
-    public record class JsonProduct(string id,string name,int calories, int carbohydrates, int proteins, int fats);
+    public record class JsonProduct(string id, string name, int calories, int carbohydrates, int proteins, int fats);
 
     public record class YPlaylist(List<Item> Items);
 

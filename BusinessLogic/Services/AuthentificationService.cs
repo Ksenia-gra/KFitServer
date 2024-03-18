@@ -1,6 +1,6 @@
-﻿using KFitServer.BusinessLogic.Helpers;
+﻿using KFitServer.BusinessLogic.DBContext.Models;
+using KFitServer.BusinessLogic.Helpers;
 using KFitServer.BusinessLogic.Repository;
-using KFitServer.DBContext.Models;
 
 namespace KFitServer.BusinessLogic.Services
 {

@@ -1,8 +1,6 @@
-﻿using KFitServer.BusinessLogic.Services;
-using KFitServer.DBContext;
-using KFitServer.DBContext.Models;
+﻿using KFitServer.BusinessLogic.DBContext.Models;
+using KFitServer.BusinessLogic.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace KFitServer.Controllers
 {
@@ -14,12 +12,12 @@ namespace KFitServer.Controllers
 		private readonly AuthentificationService authservice;
 
 		public KFitAuthorizationApiController(ILogger<KFitApiNutritionController> logger, AuthentificationService authservice)
-        {
+		{
 			this.logger = logger;
 			this.authservice = authservice;
 		}
 
-        [HttpPost("AuthorizeUserByToken")]
+		[HttpPost("AuthorizeUserByToken")]
 		public async Task<IActionResult> AuthorizeUserByToken([FromHeader] string token)
 		{
 			if (string.IsNullOrEmpty(token))
@@ -29,7 +27,7 @@ namespace KFitServer.Controllers
 			try
 			{
 				User u = await authservice.AuthorizeByTokenAsync(token);
-				logger.LogInformation($"User {u} has been authorize", null, null);
+				logger.LogInformation("User {userEmail} has been authorize", u.Email);
 				return StatusCode(StatusCodes.Status200OK, "Пользователь авторизован");
 			}
 			catch (Exception ex)
@@ -40,7 +38,7 @@ namespace KFitServer.Controllers
 		}
 
 		[HttpPost("AuthorizeUser")]
-		public async Task<IActionResult> AuthorizeUser([FromQuery] string email,string password)
+		public async Task<IActionResult> AuthorizeUser([FromQuery] string email, string password)
 		{
 			if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
 			{
@@ -48,9 +46,9 @@ namespace KFitServer.Controllers
 			}
 			try
 			{
-				User u = await authservice.AuthorizeAsync(email,password);
-				logger.LogInformation($"User {u} has been authorize", null, null);
-				return StatusCode(StatusCodes.Status200OK, "Пользователь авторизован");
+				User u = await authservice.AuthorizeAsync(email, password);
+				logger.LogInformation("User {userEmail} has been authorize", u.Email);
+				return Ok(u.AuthToken);
 			}
 			catch (Exception ex)
 			{
@@ -61,7 +59,7 @@ namespace KFitServer.Controllers
 
 		//TODO: Доделать токен
 		[HttpPost("RegisterUser")]
-		public async Task<IActionResult> RegisterUser([FromQuery] string login,string email, string password)
+		public async Task<IActionResult> RegisterUser([FromQuery] string login, string email, string password)
 		{
 			if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
 			{
@@ -69,9 +67,9 @@ namespace KFitServer.Controllers
 			}
 			try
 			{
-				User u = await authservice.RegisterAsync(login,email, password);
-				logger.LogInformation($"User {u} has been registered", null, null);
-				return StatusCode(StatusCodes.Status201Created, "Пользователь зарегистрирован");
+				User u = await authservice.RegisterAsync(login, email, password);
+				logger.LogInformation("User {userEmail} has been registered", u.Email);
+				return Ok(u.AuthToken);
 
 			}
 			catch (Exception ex)

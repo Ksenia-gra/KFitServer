@@ -1,8 +1,8 @@
-﻿using KFitServer.DBContext.Models;
+﻿using KFitServer.BusinessLogic.DBContext.Models;
 
 namespace KFitServer.Helpers
 {
-    public class NutritionCounter
+	public class NutritionCounter
     {
         public int Calories { get; private set; }
 

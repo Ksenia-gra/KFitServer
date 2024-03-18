@@ -1,4 +1,4 @@
-﻿using KFitServer.DBContext.Models;
+﻿using KFitServer.BusinessLogic.DBContext.Models;
 
 namespace KFitServer.BusinessLogic.Repository
 {
